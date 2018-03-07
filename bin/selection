@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require './lib/pump_selection'
+puts "Hello world"
+
+PumpSelection::CLI.new.call
