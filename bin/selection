@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 require './lib/pump_selection'
-puts "Hello world"
+# puts "Hello world"
+# # this pattern is more powerful just copying the requiring file from the shipped console
+# #then add it to my selection file.
+#
+# require "bundler/setup"
+# require "pump_selection"
 
 PumpSelection::CLI.new.call
