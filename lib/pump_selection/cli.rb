@@ -18,6 +18,7 @@ class PumpSelection::CLI
     input = gets.strip.downcase
     if input == "0"
       puts "list the range of stainless steel pumps....."
+      product_range
     elsif input == "1"
       puts "more info about general industries pump"
     elsif input == "2"
@@ -32,8 +33,11 @@ class PumpSelection::CLI
       puts "Not sure what you want to do please select one of the options"
       #write a method that list all the options again
     end
-  end
 
+  end
+  def product_range
+    @product_range = PumpSelection::Series.range
+  end
   # def list_pumps
   #   # puts "product range"
   #   @pumps = PumpSelection::Series.model

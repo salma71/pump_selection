@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-require './lib/pump_selection'
+require "bundler/setup"
+require_relative '../lib/pump_selection'
+# require 'nokogiri'
 # puts "Hello world"
 # # this pattern is more powerful just copying the requiring file from the shipped console
 # #then add it to my selection file.
