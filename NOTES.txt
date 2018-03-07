@@ -1,0 +1,23 @@
+ToDo list for the pump_selection CLI-project :
+initialization
+  1. Download the gem file by running bundle gem pump_selection in the terminal
+  2. Add the spec.md in the root file
+  3. Set up the environment setting
+    a. create the cli.rb into lib/pump_selection
+    b. instantiate the PumpSelection class
+    c. create the selection.rb into bin
+    d. require the necessary files
+    e. invoke the PumpSelection::CLI.new
+    f. test if pass continue
+    g. create a series.rb in lib/pump_selection
+    h. instantiate PumpSelection::Series
+    i. require necessary files into selection
+    j. test if pass continue
+    k. make fake object for test object
+    l. test is pass continue
+    issue: does't call my objects it invoke the puts doesn't give any error
+  4. git commit then push to github
+  --------------------------------------------------------
+scrapping
+  1. build the basic cli interface
+  2. git commit and push
