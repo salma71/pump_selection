@@ -2,7 +2,8 @@ class PumpSelection::CLI
   def call
     welcome
     options
-  end
+    list_ranges
+    end
   def welcome
     puts "Welcome to packopumps website"
     sleep (1)
@@ -15,10 +16,10 @@ class PumpSelection::CLI
     puts "close to exit"
   end
   def options
-    input = gets.strip.downcase
+    index = gets.strip.downcase
+    input = index.to_i
     if input == "0"
-      puts "list the range of stainless steel pumps....."
-      product_range
+      list_ranges
     elsif input == "1"
       puts "more info about general industries pump"
     elsif input == "2"
@@ -35,13 +36,12 @@ class PumpSelection::CLI
     end
 
   end
-  def product_range
+  def list_ranges
     @product_range = PumpSelection::Series.range
+    # @product_range.each.with_index(1) {|item, i| puts "#{i}. #{item[:name]}"}
+    binding.pry
   end
-  # def list_pumps
-  #   # puts "product range"
-  #   @pumps = PumpSelection::Series.model
-  # end
+
 end
 private
 def close_app
