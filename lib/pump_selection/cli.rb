@@ -7,26 +7,26 @@ class PumpSelection::CLI
     end
   def welcome
     puts "Welcome to packopumps website"
-    sleep (1)
+    # sleep (1)
     puts "Please select one of the options below to discover the website"
     puts "***************************************"
-    sleep (1)
-    puts "0 for product range"
+    # sleep (1)
+    puts " 0 for product range"
     puts "______________________________"
-    sleep (1)
-    puts "1 for general industries pump"
+    # sleep (1)
+    puts " 1 for general industries pump"
     puts "______________________________"
-    sleep (1)
-    puts "2 for hygienic pumps"
+    # sleep (1)
+    puts " 2 for hygienic pumps"
     puts "______________________________"
-    sleep (1)
-    puts "3 for pharmaceutical pumps"
+    # sleep (1)
+    puts " 3 for pharmaceutical pumps"
     puts "______________________________"
-    sleep (1)
-    puts "4 for mixing technology"
+    # sleep (1)
+    puts " 4 for mixing technology"
     puts "______________________________"
-    sleep (1)
-    puts "close to exit"
+    # sleep (1)
+    puts " Type 'close' to exit"
   end
   def options
     input = gets.strip.downcase
@@ -35,8 +35,10 @@ class PumpSelection::CLI
       list_ranges
     elsif input == "1"
       puts "more info about general industries pump"
+      list_industrial_series
     elsif input == "2"
       puts "more info about hygienic pumps"
+      list_hyg_series
     elsif input == "3"
       puts "more info about pharmaceutical pumps"
     elsif input == "4"
@@ -57,9 +59,21 @@ class PumpSelection::CLI
     range_of_pumps.each.with_index(1) do |item, i|
     puts "#{i}. #{item.name.strip}"
     end
-
   end
-
+  def list_industrial_series
+    @product_series = PumpSelection::Series.scrap_general_ind
+    # binding.pry
+    @product_series.each.with_index(1) do |item, i|
+    puts "#{i}. #{item.name}"
+    end
+  end
+  def list_hyg_series
+    @product_series = PumpSelection::Series.scrap_hyg_ind
+    # binding.pry
+    @product_series.each.with_index(1) do |item, i|
+    puts "#{i}. #{item.name}"
+    end
+  end
 end
 private
 def close_app
