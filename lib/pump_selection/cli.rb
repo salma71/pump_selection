@@ -2,7 +2,7 @@ class PumpSelection::CLI
   def call
     welcome
     options
-    list_ranges
+    # list_ranges
     end
   def welcome
     puts "Welcome to packopumps website"
@@ -16,8 +16,7 @@ class PumpSelection::CLI
     puts "close to exit"
   end
   def options
-    index = gets.strip.downcase
-    input = index.to_i
+    input = gets.strip.downcase
     if input == "0"
       list_ranges
     elsif input == "1"
@@ -38,8 +37,13 @@ class PumpSelection::CLI
   end
   def list_ranges
     @product_range = PumpSelection::Series.range
-    # @product_range.each.with_index(1) {|item, i| puts "#{i}. #{item[:name]}"}
-    binding.pry
+    range_of_pumps = @product_range.slice(0, 6)
+    # that will return the first 5 items only in the div because there are
+    #two nested divs without a class and i need only the first div
+    range_of_pumps.each.with_index(1) do |item, i|
+    puts "#{i}. #{item.name}"
+    end
+    # binding.pry
   end
 
 end
