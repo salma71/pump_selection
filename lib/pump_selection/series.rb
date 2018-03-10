@@ -1,15 +1,6 @@
 class PumpSelection::Series
   attr_accessor  :name, :series, :href, :url, :urlist
 
-def self.scrape_product
-  doc = Nokogiri::HTML(open("http://www.packopumps.com/en/products"))
-  doc.css("div.listingByBlockContainer div.categoryBlock").each do |product_range|
-    name = product_range.css("a.desc").text
-    series = product_range("a.desc span.title").text
-    url = product_range.css("a.desc").attribute("href").value
-  end
-end
-
   #return the packo wide range of st.st pumps
   def self.scrape_ranges
     doc = Nokogiri::HTML(open("http://www.packopumps.com/en/products"))
