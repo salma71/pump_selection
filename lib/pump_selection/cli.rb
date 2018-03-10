@@ -1,7 +1,7 @@
 class PumpSelection::CLI
   def call
     welcome
-    puts "--------------------------------------"
+    puts "    "
     options
     # list_ranges
     end
@@ -11,16 +11,16 @@ class PumpSelection::CLI
     puts "Please select one of the options below to discover the website"
     puts "***************************************"
     # sleep (1)
-    puts " 0 for product range"
+    puts " 0 for product range list"
     puts "______________________________"
     # sleep (1)
-    puts " 1 for general industries pump"
+    puts " 1 for general industries pump series"
     puts "______________________________"
     # sleep (1)
-    puts " 2 for hygienic pumps"
+    puts " 2 for hygienic pumps series"
     puts "______________________________"
     # sleep (1)
-    puts " 3 for pharmaceutical pumps"
+    puts " 3 for pharmaceutical pumps series"
     puts "______________________________"
     # sleep (1)
     puts " 4 for mixing technology"
@@ -32,17 +32,21 @@ class PumpSelection::CLI
     input = gets.strip.downcase
     if input == "0"
       puts "-------------------------------------"
+      # list_urls
       list_ranges
+      # more_info
     elsif input == "1"
-      puts "more info about general industries pump"
+      puts "For industrial pumps series"
       list_industrial_series
     elsif input == "2"
-      puts "more info about hygienic pumps"
+      puts "For hygienic pumps series"
       list_hyg_series
     elsif input == "3"
-      puts "more info about pharmaceutical pumps"
+      puts "For pharmaceutical pumps series"
+      list_pharma_series
     elsif input == "4"
-      puts "more info about mixing technology"
+      puts "For mixing technology solutions"
+      list_mix_series
     elsif input == "close"
       close_app
     else
@@ -52,23 +56,37 @@ class PumpSelection::CLI
 
   end
   def list_ranges
-    @product_range = PumpSelection::Series.range
+    @product_range = PumpSelection::Series.scrape_ranges
     range_of_pumps = @product_range.slice(0, 6)
     # that will return the first 5 items only in the div because there are
     #two nested divs without a class and i need only the first div
     range_of_pumps.each.with_index(1) do |item, i|
-    puts "#{i}. #{item.name.strip}"
+    puts " #{i}. #{item.name.strip}"
     end
   end
   def list_industrial_series
-    @product_series = PumpSelection::Series.scrap_general_ind
+    @product_series = PumpSelection::Series.scrape_general_ind
+    # binding.pry
+    @product_series.each.with_index(1) do |item, i|
+    puts " #{i}. #{item.name}"
+    end
+  end
+  def list_hyg_series
+    @product_series = PumpSelection::Series.scrape_hyg_ind
     # binding.pry
     @product_series.each.with_index(1) do |item, i|
     puts "#{i}. #{item.name}"
     end
   end
-  def list_hyg_series
-    @product_series = PumpSelection::Series.scrap_hyg_ind
+  def list_pharma_series
+    @product_series = PumpSelection::Series.scrape_pharma_ind
+    # binding.pry
+    @product_series.each.with_index(1) do |item, i|
+    puts "#{i}. #{item.name}"
+    end
+  end
+  def list_mix_series
+    @product_series = PumpSelection::Series.scrape_mix_ind
     # binding.pry
     @product_series.each.with_index(1) do |item, i|
     puts "#{i}. #{item.name}"
