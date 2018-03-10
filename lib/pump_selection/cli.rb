@@ -3,28 +3,29 @@ class PumpSelection::CLI
     welcome
     puts "    "
     options
-    # list_ranges
+
     end
   def welcome
     puts "Welcome to packopumps website"
-    # sleep (1)
+      sleep (1)
+      # welcome_message
     puts "Please select one of the options below to discover the website"
     puts "***************************************"
     # sleep (1)
     puts " 0 for product range list"
-    puts "______________________________"
+    puts " "
     # sleep (1)
     puts " 1 for general industries pump series"
-    puts "______________________________"
+    puts " "
     # sleep (1)
     puts " 2 for hygienic pumps series"
-    puts "______________________________"
+    puts " "
     # sleep (1)
     puts " 3 for pharmaceutical pumps series"
-    puts "______________________________"
+    puts " "
     # sleep (1)
     puts " 4 for mixing technology"
-    puts "______________________________"
+    puts " "
     # sleep (1)
     puts " Type 'close' to exit"
   end
@@ -32,15 +33,30 @@ class PumpSelection::CLI
     input = gets.strip.downcase
     if input == "0"
       puts "-------------------------------------"
-      # list_urls
       list_ranges
-      # more_info
+
     elsif input == "1"
       puts "For industrial pumps series"
       list_industrial_series
+      puts "If you need more info please type the series number"
+      answer = gets.strip.downcase
+      if ["NP60", "NP60","ICP1","ICP2"].include?(answer.upcase)
+        more_info_ind
+        puts "  "
+      else
+        puts "Please type the correct series name"
+      end
     elsif input == "2"
       puts "For hygienic pumps series"
       list_hyg_series
+      puts "If you need more info please type the series number"
+      answer = gets.strip.downcase
+      if ["FP60", "FP3","FP1", "FP2+"].include?(answer.upcase)
+        more_information
+        puts "  "
+      else
+        puts "Please type the correct series name"
+      end
     elsif input == "3"
       puts "For pharmaceutical pumps series"
       list_pharma_series
@@ -55,6 +71,7 @@ class PumpSelection::CLI
     end
 
   end
+
   def list_ranges
     @product_range = PumpSelection::Series.scrape_ranges
     range_of_pumps = @product_range.slice(0, 6)
@@ -66,13 +83,15 @@ class PumpSelection::CLI
   end
   def list_industrial_series
     @product_series = PumpSelection::Series.scrape_general_ind
+    range_of_series = @product_series.slice(0, 3)
     # binding.pry
-    @product_series.each.with_index(1) do |item, i|
+    range_of_series.each.with_index(1) do |item, i|
     puts " #{i}. #{item.name}"
     end
   end
   def list_hyg_series
     @product_series = PumpSelection::Series.scrape_hyg_ind
+    range_of_series = @product_series.slice(0, 3)
     # binding.pry
     @product_series.each.with_index(1) do |item, i|
     puts "#{i}. #{item.name}"
@@ -90,6 +109,12 @@ class PumpSelection::CLI
     # binding.pry
     @product_series.each.with_index(1) do |item, i|
     puts "#{i}. #{item.name}"
+    end
+  end
+  def more_info_ind
+    @info = PumpSelection::Series.scrape_more_info
+    @info.each do |item|
+    puts " #{item.name}"
     end
   end
 end
