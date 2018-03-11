@@ -16,7 +16,7 @@ class PumpSelection::CLI
     puts " Please type 'show list' for product range list"
     puts " "
     # sleep (1)
-    puts " To show each product avaliable series please type the product name listed in product list seperated by dashed (ex. hygienic-pumps)"
+    puts " To show products avaliable series please type 'show series list')"
     puts " "
     # sleep (1)
     puts " Type 'close' to exit"
@@ -33,30 +33,10 @@ class PumpSelection::CLI
       elsif input == "show series list"
         list_series
         puts "______________________________________"
-      # elsif input == "#{hygienic-pumps}"
-      #   puts "For hygienic pumps series"
-      #   list_series
-      #   puts "______________________________________"
-      #   elsif input == "pharmaceutical-pumps"
-      #   puts "For pharmaceutical pumps series"
-      #   list_series
-      #   puts "______________________________________"
-      # elsif input == "mixing-technologies"
-      #   puts "For mixing technology solutions"
-      #   list_series
-      # elsif input == "oem-pumps"
-      #   puts "For OEM pumps"
-      #   list_series
-      #   puts "______________________________________"
-      #   elsif input == "specific-custom-made-solutions"
-      #   puts "For specific custom made solutions series"
-      #   list_series
-      #   puts "______________________________________"
       elsif input == "close"
         close_app
       else
         puts "Not sure what you want to do please select one of the options"
-        #write a method that list all the options again
       end
     end
   end
