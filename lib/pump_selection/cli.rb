@@ -56,42 +56,6 @@ class PumpSelection::CLI
       end
     end
 end
-  # def list_industrial_series
-  #   @product_series = PumpSelection::Series.scrape_general_ind
-  #   range_of_series = @product_series.slice(0, 3)
-  #   binding.pry
-  #   range_of_series.each.with_index(1) do |item, i|
-  #   puts " #{i}. #{item.name}"
-  #   end
-  # end
-  # def list_hyg_series
-  #   @product_series = PumpSelection::Series.scrape_hyg_ind
-  #   range_of_series = @product_series.slice(0, 3)
-  #   # binding.pry
-  #   @product_series.each.with_index(1) do |item, i|
-  #   puts "#{i}. #{item.name}"
-  #   end
-  # end
-  # def list_pharma_series
-  #   @product_series = PumpSelection::Series.scrape_pharma_ind
-  #   # binding.pry
-  #   @product_series.each.with_index(1) do |item, i|
-  #   puts "#{i}. #{item.name}"
-  #   end
-  # end
-  # def list_mix_series
-  #   @product_series = PumpSelection::Series.scrape_mix_ind
-  #   # binding.pry
-  #   @product_series.each.with_index(1) do |item, i|
-  #   puts "#{i}. #{item.name}"
-  #   end
-  # end
-  # def more_info_ind
-  #   @info = PumpSelection::Series.scrape_more_info
-  #   @info.each do |item|
-  #   puts " #{item.name}"
-  #   end
-  # end
 
 private
 def close_app
