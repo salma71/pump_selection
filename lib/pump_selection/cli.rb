@@ -1,5 +1,5 @@
 class PumpSelection::CLI
-  attr_accessor :ind
+  attr_accessor :name
   def call
     welcome
     puts "    "
@@ -30,9 +30,7 @@ class PumpSelection::CLI
       if input == "show list"
         puts "-------------------------------------"
         list_ranges
-      elsif input == "1"
-        puts "anything"
-        answer = gets.strip.downcase
+      elsif input == "show series list"
         list_series
         puts "______________________________________"
       # elsif input == "#{hygienic-pumps}"
@@ -72,13 +70,11 @@ class PumpSelection::CLI
   end
   def list_series
     @all_series = PumpSelection::Series.scrape_level_one
-      @series = @all_series.collect do |item|
+      @all_series.each.with_index(1) do |item, i|
         # binding.pry
-        item.name
+        puts " #{i}. #{item.name.strip}"
       end
-      @series
-      binding.pry
-  end
+    end
 end
   # def list_industrial_series
   #   @product_series = PumpSelection::Series.scrape_general_ind
