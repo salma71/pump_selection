@@ -1,7 +1,7 @@
 class PumpSelection::Series
   attr_accessor  :name
 
-  def self.scrape_ranges
+  def self.scrape_level_one
     doc = Nokogiri::HTML(open("http://www.packopumps.com/en/products/different-kind-of-pumps"))
       doc.css("div.listingByBlockContainer div.categoryBlock").collect do|ele|
       product = self.new
@@ -10,8 +10,7 @@ class PumpSelection::Series
       # binding.pry
     end
   end
-  def self.scrape_level_one
-
+  def self.scrape_level_two
     name = URI.encode(gets.strip)
     agent = Mechanize.new
       page = agent.get("http://www.packopumps.com/en/products/different-kind-of-pumps/#{name}")
@@ -22,9 +21,6 @@ class PumpSelection::Series
         all_series.name = ele.text
         # .scan(/\w+/)
         all_series
-
-
       end
   end
-
 end
