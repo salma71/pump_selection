@@ -46,8 +46,7 @@ class PumpSelection::CLI
 
   def list_ranges
     @product_range = PumpSelection::Series.scrape_level_one
-    range_of_products = @product_range.slice(0, 6)
-      range_of_products.each.with_index(1) do |item, i|
+    @product_range.each.with_index(1) do |item, i|
     puts " #{i}. #{item.name.strip}".blue
     end
   end

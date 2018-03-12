@@ -1,3 +1,4 @@
+# // the working version
 class PumpSelection::Series
   attr_accessor  :name
 
@@ -11,16 +12,14 @@ class PumpSelection::Series
     end
   end
   def self.scrape_level_two
-    name = URI.encode(gets.strip)
-    agent = Mechanize.new
-      page = agent.get("http://www.packopumps.com/en/products/different-kind-of-pumps/#{name}")
+      doc = Nokogiri::HTML(open("http://www.packopumps.com/en/products"))
       #get each pump series_list
-      page.search("div.categoryBlock").collect do |ele|
+      doc.search("div.listingByBlock div.categoryBlock div.sub ul li").collect do |series|
         all_series = self.new
         # binding.pry
-        all_series.name = ele.text
-        # .scan(/\w+/)
+        all_series.name = series.text.strip
         all_series
-      end
+        # binding.pry
+    end
   end
 end
