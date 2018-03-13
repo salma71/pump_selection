@@ -55,6 +55,16 @@ class PumpSelection::Series
   #       all_series
   #   end
   # end
+  def self.scrape_href
+    doc = Nokogiri::HTML(open("http://www.packopumps.com"))
+      doc.css("div.listingByBlock div.categoryBlock").collect do|ele|
+        # binding.pry
+      series = self.new
+      series.name = ele.css("a").attribute("href").text
+      series
+    binding.pry
+      end
+  end
   def self.scrape_general_ind
     doc = Nokogiri::HTML(open("http://www.packopumps.com/en/products/different-kind-of-pumps/general-industrial-pumps"))
       doc.css("div.listingByBlock div.categoryBlock").collect do|ele|
