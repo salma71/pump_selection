@@ -15,26 +15,27 @@ class PumpSelection::CLI
     puts "Please select one of the options below to discover the website"
     puts "***************************************"
     # sleep (1)
-    puts " __ Please type 'show product list' for product range list"
+    puts " __ Please type 'show product list' for product range list then the number you need more info in"
     puts " "
     # sleep (1)
-    puts " 1 for general industries pump series"
-    puts "______________________________"
-    # sleep (1)
-    puts " 2 for hygienic pumps series"
-    puts "______________________________"
-    # sleep (1)
-    puts " 3 for pharmaceutical pumps series"
-    puts "______________________________"
-    # sleep (1)
-    puts " 4 for mixing technology"
-    puts "______________________________"
-    # sleep (1)
+    # puts " 1 for general industries pump series"
+    # puts "______________________________"
+    # # sleep (1)
+    # puts " 2 for hygienic pumps series"
+    # puts "______________________________"
+    # # sleep (1)
+    # puts " 3 for pharmaceutical pumps series"
+    # puts "______________________________"
+    # # sleep (1)
+    # puts " 4 for mixing technology"
+    # puts "______________________________"
+    # # sleep (1)
     puts " Type 'close' to exit"
   end
 
   def options
     input = "nil"
+    puts "please type the number you need know details on"
       puts "   "
       input = gets.strip.downcase
       if input == "show product list"
@@ -66,7 +67,8 @@ class PumpSelection::CLI
   end
   def list_product
     @product_range = PumpSelection::Series.scrape_product
-    @product_range.each.with_index(1) do |item, i|
+    products = @product_range.slice(0,6)
+    products.each.with_index(1) do |item, i|
     puts " #{i}. #{item.name.strip}".blue
     end
   end
