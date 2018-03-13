@@ -5,7 +5,7 @@ Welcome to Pump_selection gem!
     Basic gem to scrape a centrifugal pump manufacturer website (www.packopumps.com) with two level deep nested data using basic Object Oriented Ruby.
 
   Overview
-  This application is supposed to show the user (as a level-one) all the pump ranges that is being manufactured. The second level scraping, let the user list all the available series for each pump.
+  This application is supposed to show the user (as a level-one) all the pump ranges that is being manufactured. The second level scraping, let the user explore all the available series for each pump.
 
 ## Installation
 
@@ -25,13 +25,13 @@ Or install it yourself as:
 
 ## Usage
 
-1. Run pump_selection
+1. Run pump_selection by running ./bin/selection
 
 2. Follow the CLI prompts:
 
   * Type 'show product list' To discover the company's product ranges
 
-  * Type 'show series list' then hit 'enter twice' to discover the available series for each product
+  * Type 'show series list' then hit 'enter' to discover the available product series
 
   * Type 'close' to exit the application
 

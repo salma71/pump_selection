@@ -52,9 +52,8 @@ class PumpSelection::CLI
   end
   def list_series
     @all_series = PumpSelection::Series.scrape_level_two
-    @all_series.each.with_index(1) do |item, i|
-      # binding.pry
-      puts " #{i}. #{item.name.strip}".green
+      @all_series.each.with_index(1) do |item, i|
+        puts " #{i}. #{item.name.strip}".green
     end
   end
 end
