@@ -38,29 +38,31 @@ class PumpSelection::CLI
     puts "please type the number you need know details on"
       puts "   "
       input = gets.strip.downcase
-      if input == "show product list"
+      case input
+        when "show product list"
         puts "-------------------------------------"
         list_product
         options
-      elsif input == "1"
+        when "1"
         puts "For industrial pumps series"
+        # list_product
         list_ind_series
+        # PumpSelection::Series.find(input.to_i-1)
         options
-      elsif input == "2"
+        when "2"
         puts "For hygienic pumps series"
         list_hyg_series
         options
-      elsif input == "3"
+        when "3"
         puts "For pharmaceutical pumps series"
         list_pharma_series
         options
-      elsif input == "4"
+        when "4"
         puts "For mixing technology solutions"
         list_mix_series
         options
-      elsif input == "close"
+        when "close"
         close_app
-      else
         puts "Not sure what you want to do please select one of the options"
         #write a method that list all the options again
       end

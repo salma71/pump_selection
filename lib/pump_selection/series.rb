@@ -20,8 +20,10 @@ class PumpSelection::Series
   def self.all
     @@all
   end
-  def self.find(id)
+    def self.find(id)
     self.all[id - 1]
+    # binding.pry
+    self.all
   end
 # def new_from_index_page(pro)
 #   self.new (pro.css("div.listingByBlockContainer div.categoryBlock a.desc").text
@@ -33,7 +35,9 @@ class PumpSelection::Series
       product = self.new
       product.name = ele.css("a.desc").text.strip
       product.series = ele.css("div.sub ul li").text.strip
+      # binding.pry
       product
+
     end
   end
   # def self.scrape_series
@@ -78,7 +82,7 @@ class PumpSelection::Series
   def self.href_scrape
     doc = Nokogiri::HTML(open("http://www.packopumps.com/en/products"))
     doc.css("div.listingByBlock div.categoryBlock").collect do|ele|
-      # binding.pry
+      binding.pry
     href_list = self.new
     href_list.name = ele.css("a").attribute("href").text
     # binding.pry
