@@ -39,15 +39,18 @@ class PumpSelection::CLI
       puts "   "
       input = gets.strip.downcase
       case input
-        when "show product list"
+      when "0"
         puts "-------------------------------------"
         list_product
         options
         when "1"
         puts "For industrial pumps series"
-        # list_product
-        list_ind_series
-        # PumpSelection::Series.find(input.to_i-1)
+        # PumpSelection::Series.find(0)
+          list_series
+        # binding.pry
+        # list_series
+        # PumpSelection::Series.scrape_product.first
+
         options
         when "2"
         puts "For hygienic pumps series"
@@ -68,12 +71,27 @@ class PumpSelection::CLI
       end
   end
   def list_product
-    @product_range = PumpSelection::Series.scrape_product
-    products = @product_range.slice(0,6)
-    products.each.with_index(1) do |item, i|
-    puts " #{i}. #{item.name.strip}".blue
-    end
+    # binding.pry
+    @product = PumpSelection::Series.all
+    puts @product
+    # products = @product_range.slice(0,6)
+    # binding.pry
+    # @product.each.with_index(1) do |item, i|
+    #   # binding.pry
+    # puts " #{i}. #{item}".blue
+    # binding.pry
+    # end
   end
+  def list_series
+    @series = PumpSelection::Series.scrape_series
+    # series = @product_series.slice(0,6)
+    # binding.pry
+   @series.each.with_index(1) do |item, i|
+      # binding.pry
+      puts "#{i}. #{item}".blue
+      end
+  end
+end
   # def list_related_series
   #   @product_series = PumpSelection::Series.scrape_series
   #   # binding.pry
@@ -86,35 +104,29 @@ class PumpSelection::CLI
   # def print_series(series)
   #   puts "#{series.name}"
   # end
-  def list_ind_series
-    @product_series = PumpSelection::Series.scrape_general_ind
-    # binding.pry
-    @product_series.each.with_index(1) do |item, i|
-    puts "#{i}. #{item.name}"
-    end
-  end
-  def list_hyg_series
-    @product_series = PumpSelection::Series.scrape_hyg_ind
-    # binding.pry
-    @product_series.each.with_index(1) do |item, i|
-    puts "#{i}. #{item.name}"
-    end
-  end
-  def list_pharma_series
-    @product_series = PumpSelection::Series.scrape_pharma_ind
-    # binding.pry
-    @product_series.each.with_index(1) do |item, i|
-    puts "#{i}. #{item.name}"
-    end
-  end
-  def list_mix_series
-    @product_series = PumpSelection::Series.scrape_mix_ind
-    # binding.pry
-    @product_series.each.with_index(1) do |item, i|
-    puts "#{i}. #{item.name}"
-    end
-  end
-end
+
+  # def list_hyg_series
+  #   @product_series = PumpSelection::Series.scrape_hyg_ind
+  #   # binding.pry
+  #   @product_series.each.with_index(1) do |item, i|
+  #   puts "#{i}. #{item.name}"
+  #   end
+  # end
+  # def list_pharma_series
+  #   @product_series = PumpSelection::Series.scrape_pharma_ind
+  #   # binding.pry
+  #   @product_series.each.with_index(1) do |item, i|
+  #   puts "#{i}. #{item.name}"
+  #   end
+  # end
+  # def list_mix_series
+  #   @product_series = PumpSelection::Series.scrape_mix_ind
+  #   # binding.pry
+  #   @product_series.each.with_index(1) do |item, i|
+  #   puts "#{i}. #{item.name}"
+  #   end
+  # end
+# end
 
 private
 def close_app
