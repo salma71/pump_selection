@@ -1,5 +1,48 @@
-class PumpSelection::CLI
 
+class PumpSelection::CLI
+#   def call
+#     make_a_search = true
+#     puts "Welcome to packo pumps"
+#     while make_a_search == true
+#       query_website_data
+#       menu
+#       make_a_search = new_request?
+#     end
+#   end
+#   def menu
+#    puts "The pumps available are:"
+#    @query.display_pumps_name
+#    puts "What pump do you want more info on?"
+#    input = get_user_input
+#     if input.to_i > 0
+#      @query.display_more_info(input)
+#     elsif input == "exit"
+#      return
+#     else
+#      puts "Selection unclear - please type the number of the pair you want to check or exit."
+#      menu
+#     end
+#   end
+#
+#   def query_website_data
+#     @query = PumpSelection::Scraper.new
+#   end
+#   def new_request?
+#     puts "Do you want to check another pump? (Y/N)"
+#     user_input = get_user_input.downcase
+#     case user_input
+#     when "y"
+#       true
+#     when "n"
+#       false
+#     else puts "selection_unclear - please type Y or N"
+#       new_request?
+#     end
+#   end
+#   def get_user_input
+#     gets.to_s.strip
+#   end
+# end
   def call
     welcome
     puts "    "
@@ -17,19 +60,7 @@ class PumpSelection::CLI
     # sleep (1)
     puts " __ Please type 'show product list' for product range list then the number you need more info in"
     puts " "
-    # sleep (1)
-    # puts " 1 for general industries pump series"
-    # puts "______________________________"
-    # # sleep (1)
-    # puts " 2 for hygienic pumps series"
-    # puts "______________________________"
-    # # sleep (1)
-    # puts " 3 for pharmaceutical pumps series"
-    # puts "______________________________"
-    # # sleep (1)
-    # puts " 4 for mixing technology"
-    # puts "______________________________"
-    # # sleep (1)
+
     puts " Type 'close' to exit"
   end
 
@@ -42,28 +73,30 @@ class PumpSelection::CLI
       when "0"
         puts "-------------------------------------"
         list_product
-        options
-        when "1"
+        puts "-------------------------------------"
+          options
+          puts " "
+      when "1"
         puts "For industrial pumps series"
-        # PumpSelection::Series.find(0)
-          list_series
-        # binding.pry
-        # list_series
-        # PumpSelection::Series.scrape_product.first
-
+          list_series(input)
+          # binding.pry
         options
+        puts "-------------------------------------"
         when "2"
         puts "For hygienic pumps series"
-        list_hyg_series
+        list_series(input)
         options
+        puts "-------------------------------------"
         when "3"
         puts "For pharmaceutical pumps series"
-        list_pharma_series
+        list_series(input)
         options
+        puts "-------------------------------------"
         when "4"
         puts "For mixing technology solutions"
-        list_mix_series
+        list_series(input)
         options
+        puts "-------------------------------------"
         when "close"
         close_app
         puts "Not sure what you want to do please select one of the options"
@@ -71,68 +104,22 @@ class PumpSelection::CLI
       end
   end
   def list_product
-    # binding.pry
-    @product = PumpSelection::Series.all
-    puts @product
-    # products = @product_range.slice(0,6)
-    # binding.pry
-    # @product.each.with_index(1) do |item, i|
-    #   # binding.pry
-    # puts " #{i}. #{item}".blue
-    # binding.pry
-    # end
+    PumpSelection::Series.scarp
+    PumpSelection::Series.scrape_product
+    PumpSelection::Series.display_product
   end
-  def list_series
-    @series = PumpSelection::Series.scrape_series
-    # series = @product_series.slice(0,6)
+  def list_series(input)
+    PumpSelection::Series.scarp
+    PumpSelection::Series.scrape_product
+    PumpSelection::Series.display_series(input)
     # binding.pry
-   @series.each.with_index(1) do |item, i|
-      # binding.pry
-      puts "#{i}. #{item}".blue
-      end
   end
-end
-  # def list_related_series
-  #   @product_series = PumpSelection::Series.scrape_series
-  #   # binding.pry
-  #   @product_series
-  #   binding.pry
-  #   @product_series.each.with_index(1) do |item, i|
-  #   puts " #{i}. #{item.name}"
-  #   end
-  # end
-  # def print_series(series)
-  #   puts "#{series.name}"
-  # end
-
-  # def list_hyg_series
-  #   @product_series = PumpSelection::Series.scrape_hyg_ind
-  #   # binding.pry
-  #   @product_series.each.with_index(1) do |item, i|
-  #   puts "#{i}. #{item.name}"
-  #   end
-  # end
-  # def list_pharma_series
-  #   @product_series = PumpSelection::Series.scrape_pharma_ind
-  #   # binding.pry
-  #   @product_series.each.with_index(1) do |item, i|
-  #   puts "#{i}. #{item.name}"
-  #   end
-  # end
-  # def list_mix_series
-  #   @product_series = PumpSelection::Series.scrape_mix_ind
-  #   # binding.pry
-  #   @product_series.each.with_index(1) do |item, i|
-  #   puts "#{i}. #{item.name}"
-  #   end
-  # end
-# end
-
-private
-def close_app
-  puts "Exiting the application...".red
-  sleep (1)
-  puts "Thank you".green
-  sleep (1)
-  exit
+  private
+  def close_app
+    puts "Exiting the application...".red
+    sleep (1)
+    puts "Thank you".green
+    sleep (1)
+    exit
+  end
 end
