@@ -1,5 +1,5 @@
 # // the working version
-class PumpSelection::Series
+class PumpSelection::Scraper
 
 
   attr_accessor  :name, :series
@@ -29,7 +29,7 @@ class PumpSelection::Series
   def self.scrape_product
       @scraping_block.each do |ele|
         name = ele.css("a.desc").text.strip
-         series = ele.css("div.sub ul li").text.strip
+        series = ele.css("div.sub ul li").text.strip
         product = self.new(name, series)
         @@all << product
         # binding.pry
@@ -38,7 +38,7 @@ class PumpSelection::Series
 
   def self.display_series(input)
     index = input.to_i - 1
-    puts " - - - - - - - - - - - - - - - - - - #{@@all[index].series}"
+    puts " - - - - - - - - - - - - - - - - - - - - #{@@all[index].series}"
     # binding.pry
   end
 end
