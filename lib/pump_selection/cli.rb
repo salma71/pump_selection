@@ -22,7 +22,7 @@ class PumpSelection::CLI
     puts " __ If you need to explore each pump related series type it's number in the list then hit enter"
     puts " "
 
-    puts " __T ype 'close' to exit the application"
+    puts " __ Type 'close' to exit the application"
   end
 
   def options
@@ -85,8 +85,6 @@ class PumpSelection::CLI
     PumpSelection::Scraper.display_product
   end
   def list_series(input)
-    PumpSelection::Scraper.scarp
-    PumpSelection::Scraper.scrape_product
     PumpSelection::Scraper.display_series(input)
   end
   private

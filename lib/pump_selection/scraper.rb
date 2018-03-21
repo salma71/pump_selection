@@ -36,6 +36,8 @@ class PumpSelection::Scraper
     end
   end
 
+
+
   def self.display_series(input)
     index = input.to_i - 1
     puts " - - - - - - - - - - - - - - - - - - - - #{@@all[index].series}"
