@@ -35,13 +35,11 @@ class PumpSelection::CLI
       when "show list of pumps"
         puts "-------------------------------------"
         puts " "
-        list_product
+        list_product(0, 3)
         puts "need more? please type 'y'"
         answer = gets.strip
         if answer == "y"
-          PumpSelection::Product.all[3..5].each.with_index(4) do |product, i|
-          puts "   #{i}.   #{product.name}"
-          end
+        list_product(3, 3)
         end
         puts "need more?"
         answer = gets.strip
@@ -92,10 +90,10 @@ class PumpSelection::CLI
       end
   end
 
-  def list_product
+  def list_product(start_num, end_num)
     PumpSelection::Scraper.scarp
     PumpSelection::Scraper.scrape_product
-    PumpSelection::Product.all[0..2].each.with_index(1) do |product, i|
+    PumpSelection::Product.all.slice(start_num, end_num).each.with_index(start_num + 1) do |product, i|
           puts "   #{i}.   #{product.name}"
     end
   end
