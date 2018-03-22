@@ -36,7 +36,7 @@ class PumpSelection::CLI
         puts "-------------------------------------"
         puts " "
         list_product
-        puts "need more?"
+        puts "need more? please type 'y'"
         answer = gets.strip
         if answer == "y"
           PumpSelection::Product.all[3..5].each.with_index(4) do |product, i|
@@ -109,8 +109,9 @@ class PumpSelection::CLI
 #   alicekb
 # Alice@flatironschool.com
   def list_series(input)
-    puts PumpSelection::Product.all[input.to_i - 1].series
+   puts PumpSelection::Product.all[input.to_i - 1].series
   end
+
   private
   def close_app
     puts "Exiting the application..."
