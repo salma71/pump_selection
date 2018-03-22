@@ -22,7 +22,7 @@ class PumpSelection::CLI
     puts " __ If you need to explore each pump related series type it's number in the list then hit enter"
     puts " "
 
-    puts " __T ype 'close' to exit the application"
+    puts " __ Type 'close' to exit the application"
   end
 
   def options
@@ -35,7 +35,17 @@ class PumpSelection::CLI
       when "show list of pumps"
         puts "-------------------------------------"
         puts " "
-        list_product
+        list_product_1
+        puts "need more?"
+        answer = gets.strip
+        if answer == "y"
+        list_product_2
+      end
+        puts "need more?"
+        answer = gets.strip
+        if answer == "y"
+        puts "No more pumps!"
+        end
         puts "-------------------------------------"
           options
           puts " "
@@ -79,15 +89,33 @@ class PumpSelection::CLI
         close_app
       end
   end
-  def list_product
+
+  def list_product_1
     PumpSelection::Scraper.scarp
     PumpSelection::Scraper.scrape_product
-    PumpSelection::Scraper.display_product
+    PumpSelection::Product.all[0..2].each.with_index(1) do |product, i|
+          puts "   #{i}.   #{product.name}"
+    end
   end
-  def list_series(input)
+
+  def list_product_2
     PumpSelection::Scraper.scarp
     PumpSelection::Scraper.scrape_product
-    PumpSelection::Scraper.display_series(input)
+    PumpSelection::Product.all[3..5].each.with_index(4) do |product, i|
+          puts "   #{i}.   #{product.name}"
+    end
+  end
+  # Project Display
+  #  pump1
+  #  pump2
+  #  more
+  #  pump3
+  # pump4
+  # more #=> 'no more pumps'
+#   alicekb
+# Alice@flatironschool.com
+  def list_series(input)
+    puts PumpSelection::Product.all[input.to_i - 1].series
   end
   private
   def close_app
